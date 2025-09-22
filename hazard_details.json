@@ -1,0 +1,525 @@
+[
+{
+"disaster_name": "Floods",
+"description": "India is highly vulnerable to floods, with more than 40 million hectares of its total geographical area being flood-prone. Floods are a recurrent phenomenon that cause huge losses of life and damage to livelihood systems, property, and public utilities. Flood-related damages have shown an increasing trend over the years, which can be attributed to factors like a steep increase in population, rapid urbanization in flood plains, and climate change. Floods have also occurred in areas not traditionally considered flood-prone, often caused by heavy sediment loads in rivers, inadequate carrying capacity of rivers, and events like cyclones and cloudbursts. Some of the rivers that cause damage in India originate in neighboring countries, adding another layer of complexity to the problem.",
+"technical_information": {
+"flood_prone_area": {
+"total_area": "Out of 329 million hectares, more than 40 million hectares is flood-prone.",
+"annual_average_damage": "75 lakh hectares of land affected, 1600 lives lost, and damages worth Rs. 1805 crores to crops, houses, and public utilities.",
+"maximum_damages_on_record": "Maximum number of lives lost (11,316) was in 1977. The average annual flood damage in 1996-2005 was Rs. 4745 crore, compared to Rs. 1805 crore in the previous 53 years."
+},
+"regions_of_the_country_prone_to_floods": {
+"the_brahmaputra_river_region": "Consists of the Brahmaputra and Barak rivers and their tributaries, covering states like Assam, Arunachal Pradesh, Meghalaya, and northern parts of West Bengal. Characterized by heavy rainfall, fragile geology, frequent earthquakes leading to landslides, and severe bank erosion. Cloudbursts followed by flash floods are a common problem.",
+"the_ganga_river_region": "Covers states like Uttarakhand, Uttar Pradesh, Bihar, and West Bengal. Most of the flood problem is confined to the northern bank of the river Ganga and is caused by its northern tributaries. Drainage congestion is a significant issue, and the problem is exacerbated by large-scale encroachment of flood plains.",
+"the_northwest_river_region": "Main rivers include the Indus, Sutlej, Beas, and Ravi. The flood problem is relatively less severe here compared to other regions, but inadequate surface drainage causes inundation and water-logging. This region covers Jammu and Kashmir, Punjab, and parts of Himachal Pradesh, Haryana, and Rajasthan.",
+"the_central_india_and_deccan_region": "Important rivers are Narmada, Tapi, Mahanadi, Godavari, and Krishna. Rivers have well-defined, stable courses. Some rivers in Orissa are prone to floods every year. Coastal areas on the east coast face problems from monsoon depressions and cyclones.",
+"andaman_and_nicobar_islands_and_lakshadweep": "Islands with heavy rainfall. Settlements along coastlines and creeks are prone to flooding when incessant rains synchronize with high tide. Islands are also affected by sea erosion and inundation from high tides and storm surges."
+},
+"causes_of_floods": [
+"Inadequate capacity of rivers to contain high flows due to heavy rainfall.",
+"Indiscriminate occupation of flood plains.",
+"Poor drainage facilities leading to accumulation of water.",
+"Silting of riverbeds and reduction in the carrying capacity of rivers.",
+"Erosion of banks leading to changes in river courses.",
+"Obstructions to flow due to landslides.",
+"Sudden release of water from upstream reservoirs or breaches in embankments.",
+"Cloudbursts and cyclones."
+]
+},
+"guidelines": {
+"do's_and_don'ts": {
+"what_to_do_before_a_flood": [
+"Avoid building in flood-prone areas unless you elevate and reinforce your home.",
+"Elevate the furnace, water heater, and electric panel if they are susceptible to flooding to prevent damage.",
+"Install 'Check Valves' in sewer traps to prevent floodwater from backing up into your home's drains.",
+"Seal basement walls with waterproofing compounds to avoid seepage and water damage.",
+"Listen to the radio or television for flood information and warnings from official sources.",
+"Be aware that flash flooding can occur very quickly. Move immediately to higher ground and do not wait for official instructions.",
+"Secure your home by bringing in outdoor furniture and moving essential items to an upper floor.",
+"Turn off utilities at the main switches or valves if instructed. Disconnect electrical appliances. Do not touch electrical equipment if you are wet or standing in water."
+],
+"what_to_do_during_a_flood": [
+"Do not walk through moving water. Six inches of moving water is enough to make you fall. Use a stick to check the firmness of the ground in front of you.",
+"Do not drive into flooded areas. If floodwaters rise around your car, abandon the car and move to higher ground safely. Just a small amount of water can sweep a vehicle away."
+]
+},
+"emergency_kit_checklist": [
+"Battery operated torch",
+"Extra batteries",
+"Battery operated radio",
+"First aid kit and essential medicines",
+"Emergency food (dry items) and water (packed and sealed)",
+"Candles and matches in a waterproof container",
+"Knife",
+"Chlorine tablets or powdered water purifiers",
+"Can opener",
+"Important documents (Ration card, Voter ID card, Aadhar Card etc.)",
+"Cash",
+"Thick ropes and cords",
+"Shoes"
+]
+}
+},
+{
+"disaster_name": "Earthquakes",
+"description": "An earthquake is a phenomenon that occurs without warning, involving a violent shaking of the ground. It results from the sudden release of accumulated stress from the movement of the Earth's tectonic plates. The Earth's crust is divided into seven major and several minor plates that move slowly and continuously. Earthquakes are tectonic in origin, and the occurrence of one in a populated area can cause numerous casualties, injuries, and extensive property damage. India’s increasing population and unscientific constructions have put the country at high risk. Over 59% of India’s land area is under threat of moderate to severe seismic hazard (MSK Intensity VII and above). The entire Himalayan belt is prone to great earthquakes of magnitude exceeding 8.0.",
+"technical_information": {
+"seismic_risk_in_india": [
+"During the last 15 years, India has experienced 10 major earthquakes, resulting in over 20,000 deaths.",
+"The entire Himalayan belt is prone to great earthquakes of magnitude exceeding 8.0. In a span of 50 years, four such earthquakes occurred: 1897 Shillong (M8.7), 1905 Kangra (M8.0), 1934 Bihar-Nepal (M8.3), and 1950 Assam-Tibet (M8.6).",
+"The Koyna earthquake in 1967 and the Killari earthquake in 1993 caused revisions to the seismic zoning map, merging Seismic Zone I with Zone II and re-designating parts of Deccan and Peninsular India to Zone III.",
+"The Northeastern part of India experiences moderate to large earthquakes frequently, with an average magnitude greater than 6.0 annually. The Andaman and Nicobar Islands also experience frequent, damaging earthquakes."
+],
+"earthquake_zones_in_india": {
+"map_source": "Seismic Zone Map of India as per IS 1893 (Part 1): 2002.",
+"zone_v": "Very High Damage Risk Zone (MSK IX or more). This is the maximum risk zone, susceptible to great earthquakes causing total panic and considerable damage to life and property. Great damage occurs even in specially designed structures, with partial or total collapse of buildings. Ground cracks can appear, underground pipes may break, and landslides, rockfalls, and mud flows can occur. Where intensities exceed XI, total destruction may be caused with changes in the landscape, including river courses.",
+"zone_iv": "High Damage Risk Zone (MSK VIII). This zone is susceptible to strong earthquakes that create panic and move heavy furniture. Well-designed structures can suffer moderate damage, while poorly built ones suffer great damage. Other effects include landslides on steep slopes and cracks in the ground.",
+"zone_iii": "Moderate Damage Risk Zone (MSK VII). In this zone, higher intensity earthquakes can be felt, making it difficult for people to stand. Good structures suffer slight damage, while poorly designed ones suffer considerable damage.",
+"zone_ii": "Low Damage Risk Zone (MSK VI or less). Earthquakes can be felt by all, and may cause people to run outdoors. Dishes and glassware may break, books may fall, and heavy furniture may move. Some damage to buildings may be observed."
+},
+"building_damage_causes": [
+"The structural resistance of buildings against horizontal sideways shaking (lateral forces) caused by seismic waves is critical.",
+"The weakest points in load-bearing structures are door and window openings and the junction between walls and slabs.",
+"Open ground storey buildings (on stilts) are especially vulnerable to collapse if columns are not designed to withstand sideways shaking. Bracings or brick infills between columns can be added to strengthen them."
+]
+},
+"guidelines": {
+"do's_and_don'ts": {
+"before_an_earthquake": [
+"Repair deep plaster cracks in ceilings and foundations. Get expert advice for structural defects.",
+"Anchor overhead lighting fixtures and fasten shelves securely to walls.",
+"Place large or heavy objects on lower shelves.",
+"Store breakable items in low, closed cabinets with latches.",
+"Brace overhead light and fan fixtures. Repair defective electrical wiring and leaky gas connections.",
+"Secure water heaters and LPG cylinders to walls or the floor.",
+"Identify safe places indoors (under a sturdy table or against an inside wall) and outdoors (away from buildings, trees, power lines, and flyovers).",
+"Have an emergency kit ready with essential items.",
+"Develop an emergency communication plan for family members who may be separated.",
+"Help your community get ready by publishing emergency information, conducting drills, and working with local officials on building codes and retrofitting programs."
+],
+"during_an_earthquake": [
+"Stay calm and be aware that some shaking may be a foreshock.",
+"If indoors: DROP to the ground, take COVER under a sturdy table, and HOLD ON until the shaking stops. Stay away from glass, windows, outside doors, and anything that could fall. If you are in bed, hold on and protect your head with a pillow. Do not use elevators. Stay inside until it's safe to go out.",
+"If outdoors: Move away from buildings, trees, streetlights, and utility wires. Stay in an open space until the shaking stops.",
+"If in a moving vehicle: Stop as quickly as safety permits and stay in the vehicle. Avoid stopping near or under buildings, trees, or overpasses. Proceed cautiously after the shaking stops, avoiding damaged roads or bridges.",
+"If trapped under debris: Do not light a match or smoke. Do not move about or kick up dust. Cover your mouth with a handkerchief. Tap on a pipe or wall so rescuers can locate you. Use a whistle if available. Shout only as a last resort to avoid inhaling dust."
+],
+"after_an_earthquake": [
+"Keep calm, switch on the radio/TV, and obey instructions.",
+"Keep away from beaches and low banks of rivers due to potential huge waves.",
+"Be prepared for aftershocks.",
+"Turn off water, gas, and electricity. Do not smoke or use open flames.",
+"If there is a fire, try to put it out. If not, call the fire brigade.",
+"If people are seriously injured, do not move them unless they are in danger.",
+"Clean up any spilled flammable products.",
+"If people are buried, tell rescue teams. Do not rush and do not worsen the situation of injured persons or your own.",
+"Avoid places with loose electric wires and do not touch any metal object in contact with them.",
+"Do not drink water from open containers without examining and filtering it.",
+"If your home is badly damaged, evacuate. Collect water, food, and medicines (for persons with heart complaints, diabetes, etc.).",
+"Do not re-enter badly damaged buildings or go near damaged structures.",
+"Do not fill overhead water tanks completely until the building is inspected."
+]
+},
+"emergency_kit_checklist": [
+"Battery operated torch with extra batteries",
+"Battery operated radio",
+"First aid kit and manual",
+"Emergency food (dry items) and water (packed and sealed)",
+"Candles and matches in a waterproof container",
+"Knife",
+"Chlorine tablets or powdered water purifiers",
+"Can opener",
+"Essential medicines",
+"Cash, Aadhar Card and Ration Card",
+"Thick ropes and cords",
+"Sturdy shoes"
+]
+}
+},
+{
+"disaster_name": "Cyclones",
+"description": "Intense tropical storms that form over warm ocean waters, bringing with them heavy rainfall, strong winds, and storm surges. The word 'Cyclone' is derived from the Greek word 'Cyclos', meaning the coils of a snake. In India, they are classified by the strength of associated winds, storm surges, and exceptional rainfall occurrences. India's extensive coastline is highly susceptible, with most cyclones originating in the Bay of Bengal. On an average, five to six tropical cyclones form every year, of which two or three can be severe. The disaster potential is particularly high during landfall in the North Indian Ocean due to destructive wind, storm surges, and torrential rainfall.",
+"technical_information": {
+"worldwide_terminology": [
+"Typhoons (China Sea and Pacific Ocean)",
+"Hurricanes (West Indian islands in the Caribbean Sea and Atlantic Ocean)",
+"Tornados (Guinea lands of West Africa and southern USA)",
+"Willy-willies (north-western Australia)",
+"Tropical cyclones (Indian Ocean)"
+],
+"indian_meteorological_department_classification": [
+{ "type": "Low Pressure", "wind_speed_kmph": "Less than 31", "wind_speed_knots": "Less than 17" },
+{ "type": "Depression", "wind_speed_kmph": "31-49", "wind_speed_knots": "17-27" },
+{ "type": "Deep Depression", "wind_speed_kmph": "49-61", "wind_speed_knots": "27-33" },
+{ "type": "Cyclonic Storm", "wind_speed_kmph": "61-88", "wind_speed_knots": "33-47" },
+{ "type": "Severe Cyclonic Storm", "wind_speed_kmph": "88-117", "wind_speed_knots": "47-63" },
+{ "type": "Super Cyclone", "wind_speed_kmph": "More than 221", "wind_speed_knots": "More than 120" }
+],
+"damage_capacity_by_wind_speed": [
+{ "category": "01", "wind_speed_kmph": "120-150", "damage_capacity": "Minimal" },
+{ "category": "02", "wind_speed_kmph": "150-180", "damage_capacity": "Moderate" },
+{ "category": "03", "wind_speed_kmph": "180-210", "damage_capacity": "Extensive" },
+{ "category": "04", "wind_speed_kmph": "210-250", "damage_capacity": "Extreme" },
+{ "category": "05", "wind_speed_kmph": "250 and above", "damage_capacity": "Catastrophic" }
+],
+"formation_stages": [
+"Formation and Initial Development Stage: Requires a warm sea (temperature over 26°C to a depth of 60 m) with abundant water vapor, and atmospheric instability.",
+"Mature Tropical Cyclones: Air rises in vigorous thunderstorms, spreads horizontally, and creates a warm 'Eye'. The 'Eye' can be circular, concentric, or elliptical.",
+"Modification and Decay: The cyclone begins to weaken when its source of warm, moist air is cut off, typically after making landfall or passing over cold waters."
+],
+"damage_factors": [
+"Destructive winds",
+"Storm surges (tidal waves)",
+"Torrential rainfall leading to floods and landslides",
+"Damage to structures like houses, power and communication towers, and roads."
+]
+},
+"affected_regions_in_india": {
+"Very High Hazard Proneness": [
+"Andhra Pradesh (Nellore, East Godavari, Srikakulam, Guntur)",
+"Odisha (Balasore, Kendrapara, Bhadrak, Jagatsinghpur, Ganjam)",
+"Tamil Nadu (Kanchipuram)",
+"West Bengal (South 24-Pargana, Medinipur, North 24-Pargana, Howrah, Kolkata)"
+],
+"High Hazard Proneness": [
+"Andhra Pradesh (Visakhapatnam, Krishna, West Godavari, Prakasam, Vizianagaram)",
+"Gujarat (Junagadh, Kachchh, Bhavnagar, Jamnagar, Porbandar, Amreli)",
+"Odisha (Puri, Khordha, Mayurbhanj, Cuttack, Nayagarh, Keonjhar)",
+"Puducherry (Pudukkottai, Karaikal)",
+"Tamil Nadu (Cuddalore, Tiruvarur, Nagapattinam, Chennai, Viluppuram, Ramanathapuram, Thoothukudi, Tirunelveli, Thanjavur, Tiruvalur, Kanyakumari, Ariyalur, Sivaganga, Tiruvannamalai)",
+"West Bengal (Hoogli)",
+"Daman & Diu (Daman, Diu)",
+"Union Territories (Andaman & Nicobar Islands, Dadra & Nagar Haveli, Lakshadweep)"
+],
+"Moderate Hazard Proneness": [
+"Gujarat (Ahmedabad, Anand, Surat, Navsari, Valsad, Bharuch, Rajkot)",
+"Goa (North Goa, South Goa)",
+"Karnataka (Udupi, Uttar Kannada, Dakshin Kannada)",
+"Kerala (Kozhikode, Malappuram, Thrissur, Kasargod, Kannur, Ernakulam, Alappuzha, Kollam, Thiruvananthapuram, Wayand, Palakkad, Kottayam, Idukki, Pathanamthita)",
+"Maharashtra (Thane, Mumbai Suburban, Ratnagiri, Raigarh, Sindhudurg)",
+"Orissa (Jajpur, Dhenkanal, Gajapati)",
+"West Bengal (Bardhaman)"
+]
+},
+"guidelines": {
+"general_guidelines": [
+"Ignore rumors and do not spread them; believe only in official information from agencies like the India Meteorological Department (IMD) and the National Disaster Management Authority (NDMA).",
+"Keep a close watch on local news and weather warnings.",
+"Listen to a battery-operated radio for updates.",
+"Ensure all family members, including children and elders, are aware of the emergency plan."
+],
+"before_the_disaster": [
+"Check the house and secure loose tiles and repair doors and windows.",
+"Remove dead branches or dying trees close to the house; anchor movable objects which can fly in strong winds.",
+"Keep wooden boards ready to board up glass windows or install storm shutters.",
+"Keep a hurricane lantern, battery operated torches and extra dry cells ready.",
+"Have an emergency kit packed with essentials: a flashlight, radio, first aid kit, essential medicines, important documents (Ration card, Voter ID card, Aadhar card), non-perishable food, water, candles and matches in a waterproof container, knife, water purifiers, cash, thick ropes, and sturdy shoes.",
+"If evacuation is instructed, leave early before your way to high ground or shelter gets flooded."
+],
+"during_the_disaster": [
+"Stay indoors and remain calm.",
+"Switch off all electrical mains and gas connections in your house.",
+"If you have to evacuate, move valuable articles to upper floors.",
+"If the center of the cyclone passes directly over your house, there will be a temporary lull in the wind and rain. Do not go out during this time.",
+"Remain in the safest part of the house or the designated shelter."
+],
+"after_the_disaster": [
+"You should remain in the shelter until informed that you can return to your home.",
+"You must get inoculated against diseases immediately.",
+"Strictly avoid any loose and dangling wires from lamp posts.",
+"If you have to drive, do drive carefully.",
+"Clear debris from your premises immediately.",
+"Report the correct losses to appropriate authorities."
+],
+"structural_guidelines_for_buildings": {
+"building_location_and_plan": [
+"The entire foundation of a house should be constructed on the same firm soil and not on made-up soil.",
+"Projections that result in re-entrant corners should be avoided. A closed configuration like a square or rectangle is preferred for house plans.",
+"The length of an individual wall should be kept less than 3.65 m (12 ft) by providing intervening cross walls or pilasters."
+],
+"roof_and_wall_practices": [
+"Hipped roofs are preferable to gable roofs.",
+"Low pitches for roofs should be avoided. A pitch greater than 1/6 span is preferred.",
+"Use mortar bands or concrete strips for tiled roofs.",
+"The overhang at eaves shall not exceed 450 mm (max). In case it exceeds this value, the projected portion should be properly tied back to the wall frame work.",
+"For mud walls, apply a protective barrier built with stone or brick at the base."
+],
+"strengthening_measures": [
+"Use 'U'-bolts and washer assembly in place of conventional 'J'-bolt connections between cladding and the purlins.",
+"Provide plan bracing at the bottom chord level of trusses to avoid buckling.",
+"Provide a continuous Reinforced Concrete (R.C.C) bond beam over the walls to improve the lateral resistance.",
+"The opening near the edge of a wall should be positioned at a minimum distance of 600 mm for a, 900 mm for 𝑏 and 300 mm for c to ensure structural integrity.",
+"Reinforce masonry walls by embedding reinforcement to improve resistance to wind loading and prevent collapse.",
+"Ensure continuity of the load path from the roof to the foundation using tie-down bolts or tie rods for anchoring."
+]
+},
+"emergency_kit_checklist": [
+"Battery operated torch",
+"Extra batteries",
+"Battery operated radio",
+"First aid kit and essential medicines",
+"Important papers (Ration card, Voter ID card, Aadhar card etc) in a waterproof container",
+"Emergency food (dry items) and water (packed and sealed)",
+"Candles and matches in a waterproof container",
+"Knife",
+"Chlorine tablets or powdered water purifiers",
+"Cash",
+"Thick ropes and cords",
+"Sturdy shoes"
+]
+}
+},
+{
+"disaster_name": "Landslides",
+"description": "A major hydro-geological hazard, often caused by natural factors like the collision of the Indian and Eurasian plates, which render the Himalayan rocks weak and prone to landslides. Human-induced factors, such as deforestation and construction, also exacerbate the problem. Landslides and avalanches affect large parts of India, covering about 15% of the landmass. They are a chronic problem causing recurring economic losses and can be catastrophic.",
+"technical_information": {
+"geological_context": "The Himalayas, the highest mountain chain on earth, were formed due to the collision of the Indian and Eurasian plates. The northward movement of the Indian crust (about 5 cm/year) accumulates stress, which makes the region susceptible to landslides and earthquakes. The young age of the Lower Himalayas and deforestation also contribute to the severity of landslides.",
+"affected_regions_overview": "Landslides are a major threat to the Himalayas, the Northeastern hill ranges, the Western Ghats, the Nilgiris, the Eastern Ghats, and the Vindhyans. The Northeastern region is particularly affected by a bewildering variety of landslides.",
+"notable_landslide_events": [
+"Varnavat landslide, Uttarkashi District",
+"Malpha landslide, Pithoragarh district",
+"Okhimath landslide, Chamoli district, UK",
+"Paglajhora, Darjeeling district as well as Sikkim",
+"Aizawl sports complex, Mizoram"
+],
+"hazard_zoning_and_mapping": {
+"description": "Landslide Hazard Zonation (LHZ) maps are crucial for mitigation and management. These maps, often at 1:50,000 scale, classify slopes into different levels of hazards based on geological and geotechnical parameters. The National Remote Sensing Center (NRSC), Department of Science and Technology (DST), CSIR, and various academic institutions are involved in this work.",
+"hazard_zones": "The Landslide Hazard Map of India marks the areas of different hazard zones in various states. The Himalayas of Northwest and Northeast India and the Western Ghats are two regions of high vulnerability. ",
+"hazard_zone_classification": [
+"Very High Hazard: Himalayan region of Jammu & Kashmir and a section of Himachal Pradesh, Uttarakhand, and Sikkim. Parts of the Western Ghats and a small area of the Eastern Ghats.",
+"High Hazard: Parts of the Himalayas, Northeastern states (Arunachal Pradesh, Nagaland, Mizoram, Tripura, Manipur, Meghalaya), and sections of the Western Ghats (Maharashtra, Karnataka, Goa, Kerala) and Nilgiris.",
+"Moderate/Moderately High Hazard: Areas surrounding the High Hazard zones in the Himalayas and Northeastern states, and portions of the Eastern Ghats.",
+"Low Hazard: Parts of the Himalayan foothills and surrounding plains, as well as some isolated areas in the Northeast."
+]
+}
+},
+"guidelines": {
+"before_the_disaster": [
+"Prepare for tours to hilly regions according to information from the weather department or news channels.",
+"If your home is located below a debris-covered area, move to a safer place when warnings of heavy and prolonged rainfall are issued.",
+"Listen for unusual sounds like trees cracking or boulders knocking together.",
+"Notice signs like cracks in the ground or sudden movements and contact the nearest Tehsil or District Headquarters."
+],
+"during_the_disaster": [
+"Move away from the landslide path or downstream valleys quickly.",
+"Keep drains clean and inspect them for litter, leaves, plastic bags, and rubble.",
+"Keep weep holes open to allow water to drain.",
+"Stay alert, awake, and active (3A's) during the impact or probability of impact.",
+"Locate and go to shelters.",
+"Try to stay with your family and companions."
+],
+"after_the_disaster": [
+"Remain calm and alert.",
+"Call and help rescue teams, if safe to do so.",
+"Keep drinking water containers, first aid kit and essential medicines readily available.",
+"Avoid entering damaged houses.",
+"Watch for flooding if close to a river.",
+"Help others who need help, especially the elderly, children and women.",
+"Seek advice from local authorities for rebuilding damaged houses and roads.",
+"Report any damage to roads, power, and telephone lines to concerned authorities."
+],
+"do's_and_don'ts": {
+"do's": [
+"Grow more trees that can hold the soil through roots.",
+"Identify areas of rock fall and subsidence, and move to safer areas. Muddy river waters indicate landslides upstream.",
+"Ensure that the toe of the slope is not cut and remains protected.",
+"Know how to give signs or how to communicate to flying helicopters and rescue teams."
+],
+"don'ts": [
+"Avoid construction and staying in vulnerable areas.",
+"Do not panic and lose energy by crying.",
+"Do not touch or walk over loose material and electrical wiring or poles.",
+"Do not build houses near steep slopes or drainage paths.",
+"Do not drink contaminated water directly from rivers, springs, or wells.",
+"Do not move an injured person without rendering first aid unless they are in immediate danger."
+]
+},
+"emergency_kit_checklist": [
+"Battery operated torch",
+"Extra batteries",
+"Battery operated radio",
+"First aid kit and manual",
+"Emergency food (dry items) and water (packed and sealed)",
+"Candles and matches in a waterproof container",
+"Knife",
+"Chlorine tablets or powdered water purifiers",
+"Can opener",
+"Essential medicines",
+"Cash, Aadhar Card and Ration Card",
+"Thick ropes and cords",
+"Sturdy shoes"
+]
+}
+},
+{
+"disaster_name": "Tsunamis",
+"description": "Tsunamis are a series of long-wavelength ocean waves caused by large-scale disturbances of the seabed. These disturbances, often triggered by earthquakes of a magnitude greater than 6.5, cause vertical displacement of the seafloor. Other causes include submarine landslides, volcanic eruptions, and even meteorite impacts. The 2004 Sumatra-Andaman earthquake (Mw 9.3) and the resulting tsunami in the Indian Ocean demonstrated the devastating potential of such events, prompting the Indian government to establish a robust Early Warning System and Tsunami Risk Management Guidelines under the National Disaster Management Authority (NDMA).",
+"technical_information": {
+"causes": [
+"Tsunamis are primarily generated by large, rapid vertical displacements of the seafloor due to tectonic movements during earthquakes, not horizontal (strike-slip) motion.",
+"They can also be triggered by volcanic eruptions and submarine landslides, although these are less frequent.",
+"Tsunami waves travel at high speeds (up to 700 km/h in deep water) and have long periods (5 minutes to over an hour). As they approach the shore, their velocity decreases, while their height can increase dramatically.",
+"The 2004 Indian Ocean tsunami was caused by a vertical displacement of the seafloor due to slip on an inter-plate thrust fault. "
+],
+"indian_context": {
+"history": [
+"Before the 2004 event, the most significant tsunami in the Indian Ocean was the one associated with the 1883 Krakatoa volcanic explosion.",
+"The Indian coastline has been affected by a few tsunamis in the past, including events in 1881 and 1941 that affected the Andaman and Nicobar islands. A 1945 Makran earthquake caused a large tsunami in the Arabian Sea, with waves reaching up to 2 meters in Mumbai."
+],
+"vulnerable_regions": "Both the east and west coasts of India, as well as the island regions, are vulnerable to tsunamis. Potential source regions include the Andaman-Nicobar-Sumatra arc, the Indo-Burmese zone, the Nascent Boundary, the Chagos archipelago, and the Makran subduction zone.",
+"early_warning_system": "India has a state-of-the-art Tsunami Early Warning System (TEWS) under the Indian National Centre for Ocean Information Services (INCOIS) in Hyderabad. It uses seismic and sea-level data from a network of sensors, including Real Time Seismic Monitoring Network (RTSMN) stations, tide gauges, and deep ocean Bottom Pressure Recorders (BPRs) to generate and disseminate warnings. "
+},
+"structural_design_principles": {
+"design_considerations": [
+"Tsunami effects: Height & velocity of the wave, hydrostatic water pressure, debris impact, and wave break impact.",
+"Design wind velocity: Use IS: 875(3) for cyclone conditions, with a design wind speed of 65 m/s for very important installations.",
+"Earthquake effects: Use design seismic coefficients from IS: 1893 (1).",
+"Fire safety: Use fire-resistant materials and locate flammable materials outside of high-hazard areas.",
+"Flood safety: Design with a plinth height at the recorded high flood level or for a 50-year flood.",
+"Building aspects: Consider the shape, size, and height of the building, and the possibility of using stilts or designing the roof for use as a shelter.",
+"Durability: Ensure the building has a long design life.",
+"Performance levels: Aim for a non-collapse, safe, or operational level depending on the building's importance."
+],
+"rc_design_criteria_for_coastal_areas": [
+"Concrete: Minimum M20 grade for plain concrete; Minimum M30 for RCC with a maximum water-cement ratio of 0.45.",
+"Reinforcement: Use High Corrosion Resistant (HCR) steel bars (Fe 415 for up to 2 storeys, Fe 500 for taller buildings).",
+"Cover: Minimum cover to HCR reinforcement should be 20mm for slabs, 30mm for beams, and 40mm for columns."
+],
+"tsunami_specific_design": [
+"Inundation: Choose sites at higher elevations or use stilted construction. Provide adequate openings in walls to allow water to flow through.",
+"Buoyancy: Elevate buildings to prevent flotation and anchor them to the foundation.",
+"Debris Impact: Design for impact loads and use deeper foundations (piles or piers) to resist scouring.",
+"Large Floating Body Impact: Consider designing structures to resist impact from large boats or plan habitats away from fishing jetties and harbors. Submerged sea-bed anchoring systems can be used for boats."
+]
+}
+},
+"guidelines": {
+"do's_and_don'ts": {
+"before_a_tsunami": [
+"Find out if your home, school, or workplace is in a tsunami hazard area and know your street's height above sea level.",
+"Plan evacuation routes and practice them, both at night and in bad weather.",
+"Talk to your insurance agent about multi-hazard insurance schemes, as homeowners' policies may not cover tsunami flooding.",
+"Discuss tsunamis with your family so everyone knows what to do.",
+"Avoid building or living in buildings within 200 meters of the high tide line.",
+"Make a list of items to bring inside in case of a tsunami.",
+"Elevate coastal homes to reduce damage from most tsunami waves, which are typically less than 3 meters.",
+"Have an engineer check your home for ways to make it more resistant to tsunami water and to divert waves away from your property."
+],
+"during_a_tsunami": [
+"If you feel a strong coastal earthquake (20 seconds or longer): Drop, cover, and hold on. When the shaking stops, move quickly to higher ground away from the coast. Avoid downed power lines and damaged buildings.",
+"If you see the sea water recede unusually far and fast, immediately leave the beach and move to higher ground. Do not wait for an official warning.",
+"If you are in school, follow the advice of teachers and school personnel.",
+"Do not stay in homes or small buildings in low-lying coastal areas. Seek refuge in the upper floors of high, multi-storied reinforced concrete hotels if you cannot get to higher ground.",
+"If you are on a boat in the open ocean, do not return to port if a warning has been issued. Unpredictable currents and water level changes can affect harbors."
+],
+"after_a_tsunami": [
+"Continue to listen to a Weather Radio or local stations for emergency information.",
+"Check yourself and others for injuries. Call professionals with the right equipment for rescues.",
+"Help people who require special assistance (infants, elderly, people with disabilities).",
+"Avoid disaster areas as your presence might hamper rescue operations and expose you to residual hazards like contaminated water, landslides, and mudflows.",
+"Use the telephone only for emergency calls.",
+"Stay out of buildings with water around them, as the foundations may be undermined.",
+"When re-entering buildings, use extreme caution and watch every step. Wear sturdy shoes to protect your feet from cuts.",
+"Use battery-powered lanterns or flashlights instead of candles or lighters to avoid fire hazards.",
+"Examine walls, floors, doors, staircases, and windows for structural damage and inspect foundations for cracks.",
+"Check for fire hazards (gas leaks, damaged electrical systems) and turn off utilities if you find any. Call a professional for help.",
+"Check for damage to sewage and water lines. Avoid using toilets or tap water if you suspect damage.",
+"Watch out for wild animals, especially snakes, that may have come in with the water. Use a stick to poke through debris.",
+"Look for loose plaster, drywall, and ceilings that could fall.",
+"Take pictures of the damage for insurance claims. Open windows and doors to help dry the building.",
+"Shovel mud before it solidifies.",
+"Throw out any food that has come in contact with floodwater.",
+"Expect aftershocks, which can be large enough to generate another tsunami.",
+"Watch your animals closely, as their behavior may change and they may be disoriented."
+]
+},
+"emergency_kit_checklist": [
+"Battery operated torch",
+"Extra batteries",
+"Battery operated radio",
+"First aid kit and essential medicines",
+"Emergency food (dry items) and water (packed and sealed)",
+"Candles and matches in a waterproof container",
+"Knife",
+"Chlorine tablets or powdered water purifiers",
+"Can opener",
+"Important documents (Ration card, Voter ID card, Aadhar Card etc.)",
+"Cash",
+"Thick ropes and cords",
+"Sturdy shoes"
+]
+}
+},
+{
+"disaster_name": "Heat Wave",
+"description": "A Heat Wave is a period of abnormally high temperatures, more than the normal maximum temperature that occurs during the summer season. Heat Waves typically occur between March and June, and in some rare cases even extend till July. The extreme temperatures and resultant atmospheric conditions adversely affect people, as they cause physiological stress, sometimes resulting in death. Higher daily peak temperatures and longer, more intense heat waves are becoming increasingly frequent globally due to climate change, and India is also feeling the impact. This has a devastating impact on human health and has led to an increase in the number of heat wave casualties.",
+"technical_information": {
+"heat_wave_criteria": {
+"source": "Indian Meteorological Department (IMD)",
+"criteria": [
+"A Heat Wave need not be considered until the maximum temperature of a station reaches at least 40°C for Plains and at least 30°C for Hilly regions.",
+"When the normal maximum temperature of a station is less than or equal to 40°C, a Heat Wave Departure from normal is 5°C to 6°C, and a Severe Heat Wave Departure from normal is 7°C or more.",
+"When the normal maximum temperature of a station is more than 40°C, a Heat Wave Departure from normal is 4°C to 5°C, and a Severe Heat Wave Departure from normal is 6°C or more.",
+"When the actual maximum temperature remains 45°C or more, regardless of the normal maximum temperature, a heat wave should be declared."
+]
+},
+"health_impacts": [
+"The health impacts of Heat Waves typically involve dehydration, heat cramps, heat exhaustion, and/or heat stroke.",
+"Heat Cramps: Edema (swelling) and Syncope (fainting) generally accompanied by fever below 39°C (102°F).",
+"Heat Exhaustion: Fatigue, weakness, dizziness, headache, nausea, vomiting, muscle cramps, and sweating.",
+"Heat Stroke: Body temperatures of 40°C (104°F) or more, along with delirium, seizures, or coma. This is a potentially fatal condition."
+],
+"cool_roof_solutions": {
+"overview": "Cool roofs are an easy and cost-effective way to combat climate change by mitigating the urban heat island effect and reducing the demand for cooling. A cool roof reflects around 80% of sunlight, compared to a regular roof which reflects only 20%. This is achieved by using solar reflective paint, white tiles, or a white membrane. These roofs minimize solar absorption by reflecting sunlight and dissipate heat gain by emitting thermal radiation. Cool roofs can save up to 20% in energy costs and increase the longevity of the roof beneath them. They can also keep indoor temperatures 2 to 5°C lower than traditional roofs. Roofs can contribute up to 70% of a building's heat gain during high temperatures. Cool roof solutions for existing homes include: Bamboo/Thatch Screening, Green Net Shading, Mist Cooling Systems, Cool Roof Paint, Gravel Roof, Modified Bitumen Membrane, Thermoplastic Membrane, Heat Insulation Tiles, Hollow Concrete Tiles, Inverted Earthen Pots, Mud Phuska, Extruded Polystyrene (XPS sheets), Lime Concrete, Broken China Mosaic, and Cellulose Fibre.",
+"new_home_solutions": {
+"planning_and_orientation": "Proper building orientation is crucial for managing solar exposure and wind direction, which affects heat gain and cooling demand.",
+"fenestrations_and_shading": "Properly oriented doors and windows can provide natural cross-ventilation. Exterior shading devices like awnings, louvers, or screens can reduce solar heat gain. Awnings can reduce heat gain by 65% from the south and 77% from the east.",
+"cool_walls": "Walls absorb heat during the day and radiate it at night, increasing cooling needs. Techniques like using hollow walls (e.g., Rat Trap Bond masonry, hollow blocks, AAC blocks) and light-colored finishes can reduce heat gain.",
+"landscaping": "Landscaping, including terrace gardens and vertical greens, can reduce ambient temperatures near walls by 2°C to 5°C through shading and evaporation. Pergolas and trellises also provide shade to reduce heat gain."
+}
+}
+},
+"guidelines": {
+"do's_and_don'ts": {
+"general": [
+"Avoid going out in the sun, especially between 12:00 p.m. and 3:00 p.m.",
+"Drink sufficient water and as often as possible, even if not thirsty.",
+"Wear lightweight, light-colored, loose, and porous cotton clothes.",
+"Use protective goggles, an umbrella or hat, and shoes or chappals when going out in the sun.",
+"Avoid strenuous activities and working outside when the temperature is high.",
+"Carry water with you while traveling.",
+"Avoid alcohol, tea, coffee, and carbonated soft drinks, as they dehydrate the body.",
+"Avoid high-protein and stale food.",
+"If you work outside, use a hat or an umbrella and a damp cloth on your head, neck, face, and limbs.",
+"Do not leave children or pets in parked vehicles.",
+"If you feel faint or ill, see a doctor immediately.",
+"Use ORS, or homemade drinks like lassi, torani (rice water), lemon water, and buttermilk to re-hydrate.",
+"Keep animals in the shade with plenty of water.",
+"Keep your home cool by using curtains, shutters, or sunshades and opening windows at night.",
+"Use fans, damp clothing, and take cold baths frequently."
+],
+"acclimatisation": "People coming from a cooler climate to a hot climate should not move about in open fields for a week to allow their bodies to acclimatize.",
+"treatment_for_sunstroke": [
+"Lay the person in a cool, shaded place.",
+"Wipe or wash the body with a wet cloth and pour normal-temperature water on the head to bring down the body temperature.",
+"Give the person ORS or other rehydrating drinks like lemon sarbat or torani.",
+"Take the person to the nearest health center immediately, as heat strokes can be fatal.",
+"Do not give the person alcohol, caffeine, or aerated drinks."
+],
+"maintenance_of_cool_roofs": [
+"Clean the roof regularly with a soft broom and ensure rainwater drains are free of obstructions.",
+"Avoid keeping scrap and heavy items on the roof.",
+"Do not drag items on the surface.",
+"Timely repairs to small damages can save on future costs and increase the life of the building."
+]
+},
+"emergency_kit_checklist": [
+"Water bottle",
+"Umbrella, hat, or cap/head cover",
+"Hand towel",
+"Hand fan",
+"Electrolyte/Glucose/Oral Rehydration solution"
+]
+}
+}
+]
