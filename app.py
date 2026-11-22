@@ -6,20 +6,11 @@ from supabase import create_client
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.document_loaders import JSONLoader
-from langchain_community.vectorstores import FAISS
-from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
-from langchain.chains.retrieval_qa.base import RetrievalQA
-from langchain.prompts import PromptTemplate
 from webpush import WebPush, WebPushSubscription
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
-
-# Load API key from environment variables
-os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY")
 
 # VAPID keys for push notifications
 VAPID_PRIVATE_KEY = os.getenv("VAPID_PRIVATE_KEY")
@@ -31,75 +22,10 @@ SUPABASE_URL = os.getenv("VITE_SUPABASE_URL")
 SUPABASE_ANON_KEY = os.getenv("VITE_SUPABASE_ANON_KEY")
 
 # Create a Supabase client
-supabase = create_client(SUPABASE_URL, SUPABASE_ANON_KEY)
-
-# --- RAG Chain Initialization ---
-def initialize_rag_chain():
-    """Initializes the RAG chain with your document loading and processing logic."""
-    try:
-        # Step 1 & 2: Load and Process Data
-        # Check for the existence of your data file.
-        if not os.path.exists('hazard_details.json'):
-            print("The file 'hazard_details.json' was not found. RAG chain will not be initialized.")
-            return None
-
-        loader = JSONLoader(
-            file_path='hazard_details.json',
-            jq_schema='.',
-            text_content=False
-        )
-        documents = loader.load()
-
-        # Step 3: Split Documents into Chunks
-        text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=1000,
-            chunk_overlap=200,
-            length_function=len,
-            is_separator_regex=False,
-        )
-        docs = text_splitter.split_documents(documents)
-        print(f"Split {len(documents)} documents into {len(docs)} chunks.")
-
-        # Step 4: Create Embeddings
-        embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
-
-        # Step 5: Set Up a Vector Store
-        db = FAISS.from_documents(docs, embeddings)
-        print("Vector store created successfully.")
-
-        # Step 6: Build the RAG Chain
-        llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.2)
-        
-        prompt_template = """You are a helpful chatbot that provides information about disasters. Use the following context to answer the user's question.
-If you don't know the answer, just say that you don't have enough information about the topic. Do not try to make up an answer.
-Only use the provided information.
-
-Context:
-{context}
-
-Question: {question}
-Helpful Answer:"""
-
-        PROMPT = PromptTemplate(
-            template=prompt_template, input_variables=["context", "question"]
-        )
-        
-        return RetrievalQA.from_chain_type(
-            llm=llm,
-            chain_type="stuff",
-            retriever=db.as_retriever(),
-            chain_type_kwargs={"prompt": PROMPT},
-            return_source_documents=True,
-        )
-    except FileNotFoundError as e:
-        print(f"Initialization failed: {e}")
-        return None
-    except Exception as e:
-        print(f"An unexpected error occurred during initialization: {e}")
-        return None
+supabase = create_client(SUPABASE_URL, SUPABASE_ANON_KEY) if SUPABASE_URL and SUPABASE_ANON_KEY else None
 
 # FastAPI app setup
-app = FastAPI()
+app = FastAPI(title="Sajag Disaster Preparedness API")
 
 app.add_middleware(
     CORSMiddleware,
@@ -108,28 +34,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Initialize the RAG chain
-qa_chain = initialize_rag_chain()
-
-# Pydantic model for the chat query
-class QueryRequest(BaseModel):
-    query: str
-
-@app.post("/chat")
-async def chat_endpoint(request: QueryRequest):
-    """API endpoint to handle chatbot queries."""
-    # Log the incoming request to help with debugging 422 errors
-    print(f"Received chat request with query: {request.query}")
-
-    if not qa_chain:
-        raise HTTPException(status_code=503, detail="Chatbot service is not available.")
-    
-    try:
-        response = qa_chain.invoke({"query": request.query})
-        return {"result": response['result']}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"An error occurred: {e}")
 
 # Push notification models and endpoints
 class SubscribeRequest(BaseModel):

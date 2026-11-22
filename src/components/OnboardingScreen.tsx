@@ -148,125 +148,138 @@ const OnboardingScreen = ({ onComplete }: OnboardingScreenProps) => {
   };
 
   const subscribeUserToPush = async (userId: string) => {
-    if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
-      console.warn('Push messaging is not supported.');
-      return;
+    try {
+      if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+        return;
+      }
+      const registration = await navigator.serviceWorker.ready;
+      const applicationServerKey = urlBase64ToUint8Array('BA4e2upT8G_1BKiIxqiBLSRLRjyoh9te36pn492MhTy9zD-CF1qDweooJtrU84QiER3A8HSSOwAzcE7jQptP03E');
+
+      const subscription = await registration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: applicationServerKey,
+      });
+
+      await fetch('http://localhost:8000/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId, subscription }),
+      });
+    } catch {
+      // Push notifications are optional for local offline running
     }
-
-    const registration = await navigator.serviceWorker.ready;
-    
-    // NOTE: You must replace 'YOUR_VAPID_PUBLIC_KEY' with the actual key from your .env file
-    const applicationServerKey = urlBase64ToUint8Array('BA4e2upT8G_1BKiIxqiBLSRLRjyoh9te36pn492MhTy9zD-CF1qDweooJtrU84QiER3A8HSSOwAzcE7jQptP03E');
-
-    const subscription = await registration.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: applicationServerKey,
-    });
-
-    // Call your new backend endpoint to save the subscription
-    await fetch('http://localhost:8000/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userId, subscription }),
-    });
   };
 
   const handleOnboardingComplete = async () => {
     setIsLoading(true);
-    try {
-      const capitalizedUserType = selectedUserType.charAt(0).toUpperCase() + selectedUserType.slice(1);
+    let userId = `local_user_${Date.now()}`;
+    const capitalizedUserType = selectedUserType.charAt(0).toUpperCase() + selectedUserType.slice(1);
 
-      // Step 1: Insert into 'users' table
+    try {
+      // Step 1: Attempt insert into 'users' table if Supabase is reachable
       const userInsertData = {
         name,
         state: selectedState,
         city: selectedCity || null,
         user_type: capitalizedUserType,
       };
+      
       const { data: userData, error: userError } = await supabase
         .from("users")
         .insert([userInsertData])
         .select("uid");
 
-      if (userError) throw new Error(`Error inserting into 'users' table: ${userError.message}`);
-      const userId = userData[0].uid;
+      if (!userError && userData && userData[0]) {
+        userId = userData[0].uid;
 
-      // After saving user data, subscribe them to push notifications
-      await subscribeUserToPush(userId);
+        // Subscribe to push notifications if supported
+        await subscribeUserToPush(userId);
 
-      // Step 2: Handle role-specific data insertion
-      if (selectedUserType === "student" || selectedUserType === "teacher") {
-        // Find or create school
-        const { data: schoolData, error: schoolFetchError } = await supabase
-          .from("Schools")
-          .select("school_id")
-          .eq("school_name", schoolName)
-          .single();
-
-        let schoolId;
-        if (schoolFetchError && schoolFetchError.code !== 'PGRST116' || !schoolData) {
-          const { data: newSchoolData, error: schoolInsertError } = await supabase
+        // Step 2: Handle role-specific data insertion
+        if (selectedUserType === "student" || selectedUserType === "teacher") {
+          const { data: schoolData, error: schoolFetchError } = await supabase
             .from("Schools")
-            .insert([{ school_name: schoolName, state: selectedState, city: selectedCity || null }])
-            .select("school_id");
-          if (schoolInsertError) throw new Error(`Error inserting into 'Schools' table: ${schoolInsertError.message}`);
-          schoolId = newSchoolData[0].school_id;
-        } else {
-          schoolId = schoolData.school_id;
-        }
-
-        if (selectedUserType === "student") {
-          // Find or create class
-          const { data: classData, error: classFetchError } = await supabase
-            .from("Classes")
-            .select("class_id")
-            .eq("school_id", schoolId)
-            .eq("class_name", classStandard)
-            .eq("section", classSection)
+            .select("school_id")
+            .eq("school_name", schoolName)
             .single();
 
-          let classId;
-          if (classFetchError && classFetchError.code !== 'PGRST116' || !classData) {
-            const { data: newClassData, error: classInsertError } = await supabase
-              .from("Classes")
-              .insert([{ school_id: schoolId, class_name: classStandard, section: classSection }])
-              .select("class_id");
-            if (classInsertError) throw new Error(`Error inserting into 'Classes' table: ${classInsertError.message}`);
-            classId = newClassData[0].class_id;
+          let schoolId;
+          if (schoolFetchError && schoolFetchError.code !== 'PGRST116' || !schoolData) {
+            const { data: newSchoolData } = await supabase
+              .from("Schools")
+              .insert([{ school_name: schoolName, state: selectedState, city: selectedCity || null }])
+              .select("school_id");
+            if (newSchoolData && newSchoolData[0]) {
+              schoolId = newSchoolData[0].school_id;
+            }
           } else {
-            classId = classData.class_id;
+            schoolId = schoolData.school_id;
           }
 
-          // Insert into Student table
-          const { error: studentError } = await supabase
-            .from("Student")
-            .insert([{ student_id: userId, school_id: schoolId, class_id: classId, admission_no: admissionNo, learning_progress: 0 }]);
-          if (studentError) throw new Error(`Error inserting into 'Student' table: ${studentError.message}`);
-        } else if (selectedUserType === "teacher") {
-          // Insert into Teacher table
-          const { error: teacherError } = await supabase
-            .from("Teacher")
-            .insert([{ teacher_id: userId, school_id: schoolId, employment_id: employmentId }]);
-          if (teacherError) throw new Error(`Error inserting into 'Teacher' table: ${teacherError.message}`);
-        }
-      } else if (selectedUserType === "admin") {
-        // Insert into Admin table
-        const { error: adminError } = await supabase
-          .from("Admin")
-          .insert([{ admin_id: userId, gov_employee_id: govEmployeeId, state: selectedState }]);
-        if (adminError) throw new Error(`Error inserting into 'Admin' table: ${adminError.message}`);
-      }
+          if (selectedUserType === "student" && schoolId) {
+            const { data: classData, error: classFetchError } = await supabase
+              .from("Classes")
+              .select("class_id")
+              .eq("school_id", schoolId)
+              .eq("class_name", classStandard)
+              .eq("section", classSection)
+              .single();
 
-      onComplete(selectedUserType as UserType, selectedState, selectedRegion, selectedCity, userId);
-    } catch (error) {
-      if (error instanceof Error) {
-        setErrorMessage(error.message);
-      } else {
-        setErrorMessage("An unknown error occurred. Please try again.");
+            let classId;
+            if (classFetchError && classFetchError.code !== 'PGRST116' || !classData) {
+              const { data: newClassData } = await supabase
+                .from("Classes")
+                .insert([{ school_id: schoolId, class_name: classStandard, section: classSection }])
+                .select("class_id");
+              if (newClassData && newClassData[0]) {
+                classId = newClassData[0].class_id;
+              }
+            } else {
+              classId = classData.class_id;
+            }
+
+            if (classId) {
+              await supabase
+                .from("Student")
+                .insert([{ student_id: userId, school_id: schoolId, class_id: classId, admission_no: admissionNo, learning_progress: 0 }]);
+            }
+          } else if (selectedUserType === "teacher" && schoolId) {
+            await supabase
+              .from("Teacher")
+              .insert([{ teacher_id: userId, school_id: schoolId, employment_id: employmentId }]);
+          }
+        } else if (selectedUserType === "admin") {
+          await supabase
+            .from("Admin")
+            .insert([{ admin_id: userId, gov_employee_id: govEmployeeId, state: selectedState }]);
+        }
       }
-    } finally {
-      setIsLoading(false);
+    } catch {
+      // Gracefully continue with local offline storage
     }
+
+    // Save profile locally so app runs completely free and offline
+    try {
+      localStorage.setItem("sajag_user", JSON.stringify({
+        userId,
+        name,
+        state: selectedState,
+        region: selectedRegion,
+        city: selectedCity,
+        userType: selectedUserType,
+        schoolName,
+        admissionNo,
+        classStandard,
+        classSection,
+        employmentId,
+        govEmployeeId,
+      }));
+    } catch (e) {
+      console.warn("Could not save to localStorage", e);
+    }
+
+    onComplete(selectedUserType as UserType, selectedState, selectedRegion, selectedCity, userId);
+    setIsLoading(false);
   };
 
   const canProceed = () => {

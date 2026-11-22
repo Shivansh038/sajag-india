@@ -2,12 +2,8 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, RefreshCw, Check, X, BookOpen, ChevronLeft } from "lucide-react";
-
-interface QuizProps {
-  onQuizComplete: (score: number, total: number) => void;
-  onBack: () => void;
-}
+import { ArrowRight, RefreshCw, Check, X, BookOpen, ChevronLeft, Award } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface Question {
   question: string;
@@ -31,7 +27,7 @@ const quizQuestions: Question[] = [
   },
   {
     question: "Which of these items is NOT essential for a basic disaster safety kit?",
-    options: ["First-aid kit", "Rope", "Important documents", "Extra clothes"],
+    options: ["First-aid kit", "Drinking water", "Important documents", "A large television"],
     answer: "A large television",
     disaster: "safety kit"
   },
@@ -139,25 +135,31 @@ const quizQuestions: Question[] = [
   },
 ];
 
-const shuffleArray = (array: any[]) => {
-  for (let i = array.length - 1; i > 0; i--) {
+const shuffleArray = <T,>(array: T[]): T[] => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
-  return array;
+  return shuffled;
 };
 
-const Quizzes = ({ onBack }: { onBack: () => void }) => {
+interface QuizzesProps {
+  onBack: () => void;
+  onQuizComplete?: (score: number, total: number) => void;
+}
+
+const Quizzes = ({ onBack, onQuizComplete }: QuizzesProps) => {
   const [quizState, setQuizState] = useState<"intro" | "playing" | "results">("intro");
   const [shuffledQuestions, setShuffledQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
   const [showAnswer, setShowAnswer] = useState(false);
+  const { toast } = useToast();
 
   useEffect(() => {
-    // Shuffle the questions when the component mounts
-    setShuffledQuestions(shuffleArray([...quizQuestions]));
+    setShuffledQuestions(shuffleArray(quizQuestions).slice(0, 5)); // 5 questions per quiz session
   }, []);
 
   const handleStartQuiz = () => {
@@ -165,17 +167,18 @@ const Quizzes = ({ onBack }: { onBack: () => void }) => {
     setCurrentQuestionIndex(0);
     setScore(0);
     setUserAnswers([]);
-    setShuffledQuestions(shuffleArray([...quizQuestions]));
+    setShuffledQuestions(shuffleArray(quizQuestions).slice(0, 5));
   };
 
   const handleAnswerClick = (selectedOption: string) => {
-    if (showAnswer) return; // Prevent multiple answers
+    if (showAnswer) return;
     const currentQuestion = shuffledQuestions[currentQuestionIndex];
     const isCorrect = selectedOption === currentQuestion.answer;
     
     setUserAnswers(prev => [...prev, selectedOption]);
+    const updatedScore = isCorrect ? score + 1 : score;
     if (isCorrect) {
-      setScore(prev => prev + 1);
+      setScore(updatedScore);
     }
     
     setShowAnswer(true);
@@ -185,29 +188,60 @@ const Quizzes = ({ onBack }: { onBack: () => void }) => {
       if (currentQuestionIndex < shuffledQuestions.length - 1) {
         setCurrentQuestionIndex(prev => prev + 1);
       } else {
+        // Quiz complete!
         setQuizState("results");
+        if (onQuizComplete) {
+          onQuizComplete(updatedScore, shuffledQuestions.length);
+        }
+
+        // Save progress to localStorage
+        try {
+          const prevProgressStr = localStorage.getItem("sajag_progress");
+          const prevProgress = prevProgressStr ? JSON.parse(prevProgressStr) : { progress: 0 };
+          const calculatedPct = Math.min(100, Math.max(prevProgress.progress || 0, Math.round((updatedScore / shuffledQuestions.length) * 100)));
+          
+          localStorage.setItem("sajag_progress", JSON.stringify({
+            progress: calculatedPct,
+            quiz_completed: true,
+            score: updatedScore,
+            total: shuffledQuestions.length,
+            completedAt: new Date().toISOString()
+          }));
+        } catch (e) {
+          console.warn("Could not save quiz progress", e);
+        }
+
+        toast({
+          title: "🎉 Quiz Completed!",
+          description: `You scored ${updatedScore} out of ${shuffledQuestions.length}. Safety preparedness score updated!`,
+        });
       }
-    }, 1500); // Wait 1.5 seconds before moving to the next question
+    }, 1200);
   };
 
   const currentQuestion = shuffledQuestions[currentQuestionIndex];
 
   if (quizState === "intro") {
     return (
-      <div className="p-4 flex flex-col items-center justify-center h-full">
-        <Button variant="ghost" size="sm" onClick={onBack} className="absolute top-4 left-4">
+      <div className="p-4 flex flex-col items-center justify-center min-h-[400px]">
+        <Button variant="ghost" size="sm" onClick={onBack} className="self-start mb-4">
           <ChevronLeft className="w-4 h-4 mr-2" /> Back
         </Button>
-        <Card className="max-w-sm w-full text-center">
+        <Card className="max-w-sm w-full text-center shadow-md">
           <CardHeader>
-            <BookOpen className="w-10 h-10 text-primary mx-auto mb-2" />
-            <CardTitle>Disaster Preparedness Quiz</CardTitle>
+            <BookOpen className="w-12 h-12 text-primary mx-auto mb-2" />
+            <CardTitle className="text-xl">Disaster Preparedness Quiz</CardTitle>
           </CardHeader>
-          <CardContent>
-            <p className="text-muted-foreground mb-4">
-              Test your knowledge on disaster safety, preparedness, and response.
+          <CardContent className="space-y-4">
+            <p className="text-sm text-muted-foreground">
+              Test your knowledge on disaster safety, early warnings, and emergency survival measures.
             </p>
-            <Button onClick={handleStartQuiz} className="w-full">
+            <div className="bg-muted p-3 rounded-md text-xs text-left space-y-1">
+              <p>⏱️ <strong>5 Questions</strong> per session</p>
+              <p>🎯 Immediate feedback on each question</p>
+              <p>📈 Updates your Home Screen preparedness score</p>
+            </div>
+            <Button onClick={handleStartQuiz} className="w-full font-bold">
               Begin Quiz <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </CardContent>
@@ -217,20 +251,31 @@ const Quizzes = ({ onBack }: { onBack: () => void }) => {
   }
 
   if (quizState === "results") {
+    const percentage = Math.round((score / shuffledQuestions.length) * 100);
     return (
-      <div className="p-4 flex flex-col items-center justify-center h-full">
-        <Card className="max-w-sm w-full text-center">
+      <div className="p-4 flex flex-col items-center justify-center min-h-[400px]">
+        <Card className="max-w-sm w-full text-center shadow-lg border-2 border-primary/20">
           <CardHeader>
-            <CardTitle>Quiz Results</CardTitle>
+            <Award className="w-12 h-12 text-achievement mx-auto mb-2" />
+            <CardTitle className="text-xl">Quiz Results</CardTitle>
           </CardHeader>
-          <CardContent>
-            <p className="text-muted-foreground text-4xl font-bold mb-4">
-              {score} / {shuffledQuestions.length}
+          <CardContent className="space-y-4">
+            <div>
+              <p className="text-4xl font-extrabold text-primary mb-1">
+                {score} / {shuffledQuestions.length}
+              </p>
+              <Badge variant={percentage >= 60 ? "default" : "destructive"}>
+                {percentage}% Preparedness Score
+              </Badge>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              {percentage >= 80 
+                ? "Excellent! You are well prepared to respond effectively in disaster emergencies."
+                : percentage >= 60
+                ? "Good job! Review the disaster modules to strengthen your response tactics."
+                : "Keep learning! Check out the interactive emergency modules to build life-saving skills."}
             </p>
-            <p className="mb-4">
-              You scored **{score}** out of **{shuffledQuestions.length}**.
-            </p>
-            <Button onClick={handleStartQuiz} className="w-full mb-2">
+            <Button onClick={handleStartQuiz} className="w-full">
               <RefreshCw className="w-4 h-4 mr-2" /> Retake Quiz
             </Button>
             <Button onClick={onBack} variant="outline" className="w-full">
@@ -242,55 +287,74 @@ const Quizzes = ({ onBack }: { onBack: () => void }) => {
     );
   }
 
+  if (!currentQuestion) return null;
+
   return (
-    <div className="p-4 space-y-4 h-full">
+    <div className="p-4 space-y-4">
       <div className="flex items-center justify-between">
         <Button variant="ghost" size="sm" onClick={onBack} className="flex items-center">
           <ChevronLeft className="w-4 h-4 mr-2" /> Back
         </Button>
         <div className="flex items-center space-x-2">
           <Badge variant="secondary">
-            {currentQuestionIndex + 1} / {shuffledQuestions.length}
+            Question {currentQuestionIndex + 1} of {shuffledQuestions.length}
           </Badge>
-          <span className="text-sm font-medium">Score: {score}</span>
+          <span className="text-sm font-semibold text-primary">Score: {score}</span>
         </div>
       </div>
       
-      <Card className="min-h-[250px]">
-        <CardHeader>
-          <CardTitle className="text-lg">
+      <Card className="shadow-md">
+        <CardHeader className="pb-3">
+          <div className="flex items-center justify-between mb-1">
+            <Badge variant="outline" className="text-xs uppercase tracking-wide">
+              {currentQuestion.disaster}
+            </Badge>
+          </div>
+          <CardTitle className="text-base leading-snug">
             {currentQuestion.question}
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-3">
-          {shuffleArray([...currentQuestion.options]).map((option) => (
-            <Button
-              key={option}
-              variant={
-                showAnswer
-                  ? option === currentQuestion.answer
-                    ? "default"
-                    : userAnswers[currentQuestionIndex] === option
-                    ? "destructive"
-                    : "outline"
-                  : "outline"
+        <CardContent className="space-y-2 pt-0">
+          {currentQuestion.options.map((option, idx) => {
+            const isSelected = userAnswers[currentQuestionIndex] === option;
+            const isCorrectAnswer = option === currentQuestion.answer;
+            
+            let btnVariant: "outline" | "default" | "destructive" = "outline";
+            let extraClass = "hover:bg-muted text-left justify-start";
+
+            if (showAnswer) {
+              if (isCorrectAnswer) {
+                btnVariant = "default";
+                extraClass = "bg-green-600 hover:bg-green-600 text-white border-green-600";
+              } else if (isSelected && !isCorrectAnswer) {
+                btnVariant = "destructive";
+                extraClass = "bg-destructive text-destructive-foreground";
               }
-              className="w-full justify-start text-left h-auto py-3 relative"
-              onClick={() => handleAnswerClick(option)}
-              disabled={showAnswer}
-            >
-              {option}
-              {showAnswer && (
-                <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                  {option === currentQuestion.answer ? (
-                    <Check className="w-5 h-5 text-white" />
-                  ) : userAnswers[currentQuestionIndex] === option ? (
-                    <X className="w-5 h-5 text-white" />
-                  ) : null}
+            }
+
+            return (
+              <Button
+                key={idx}
+                variant={btnVariant}
+                disabled={showAnswer}
+                onClick={() => handleAnswerClick(option)}
+                className={`w-full py-3 h-auto min-h-[44px] text-sm whitespace-normal transition-all ${extraClass}`}
+              >
+                <div className="flex items-center w-full">
+                  <span className="mr-3 font-bold text-xs opacity-70 w-5">
+                    {String.fromCharCode(65 + idx)}.
+                  </span>
+                  <span className="flex-1">{option}</span>
+                  {showAnswer && isCorrectAnswer && (
+                    <Check className="w-4 h-4 ml-2 text-white shrink-0" />
+                  )}
+                  {showAnswer && isSelected && !isCorrectAnswer && (
+                    <X className="w-4 h-4 ml-2 text-white shrink-0" />
+                  )}
                 </div>
-              )}
-            </Button>
-          ))}
+              </Button>
+            );
+          })}
         </CardContent>
       </Card>
     </div>

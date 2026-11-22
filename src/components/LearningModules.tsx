@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import {
-  Book, Gamepad2, HelpCircle, FileText, Map, ChevronLeft
+  Book, Gamepad2, HelpCircle, FileText, Map
 } from "lucide-react";
 import Modules from "./Modules";
 import Games from "./Games";
 import Quizzes from "./Quizzes";
+import Maps from "./Maps";
 
 interface LearningModulesProps {
   userType: "student" | "teacher" | "admin";
@@ -26,30 +26,7 @@ const LearningModules = ({ userType, userState }: LearningModulesProps) => {
   };
   
   if (currentView === "maps") {
-    const isPunjab = userState.trim().toLowerCase() === "punjab";
-    return (
-      <div className="p-4 space-y-4">
-        <Button variant="outline" size="sm" onClick={handleBackToMenu} className="w-full text-wrap whitespace-normal">
-          <ChevronLeft className="w-4 h-4 mr-2" /> Back
-        </Button>
-        <Card>
-          <CardHeader>
-            <CardTitle>Disaster Risk Map for {userState}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {isPunjab ? (
-              <iframe
-                title="Punjab Disaster Map"
-                src="/punjab_map.html"
-                className="w-full h-[500px] border-none" // Modified height here
-              ></iframe>
-            ) : (
-              <p className="text-center text-muted-foreground">Map content for {userState} is not available yet.</p>
-            )}
-          </CardContent>
-        </Card>
-      </div>
-    );
+    return <Maps onBack={handleBackToMenu} userState={userState} />;
   }
 
   if (currentView === "modules") {
@@ -63,7 +40,6 @@ const LearningModules = ({ userType, userState }: LearningModulesProps) => {
   if (currentView === "quizzes") {
     return <Quizzes onBack={handleBackToMenu} />;
   }
-
 
   // Default view: Learning Options Grid
   return (
@@ -82,54 +58,54 @@ const LearningModules = ({ userType, userState }: LearningModulesProps) => {
       {/* Learning Options Grid */}
       <div className="grid grid-cols-2 gap-4">
         <Card
-          className="hover:shadow-md transition-all cursor-pointer"
+          className="hover:shadow-md transition-all cursor-pointer hover:border-primary/50"
           onClick={() => handleOptionClick("games")}
         >
           <CardContent className="p-4 text-center">
             <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mx-auto mb-3">
               <Gamepad2 className="w-6 h-6 text-white" />
             </div>
-            <h3 className="font-semibold mb-2">Games</h3>
-            <p className="text-xs text-muted-foreground">Interactive learning games</p>
+            <h3 className="font-semibold mb-1 text-sm">Games</h3>
+            <p className="text-xs text-muted-foreground">Interactive safety games</p>
           </CardContent>
         </Card>
 
         <Card
-          className="hover:shadow-md transition-all cursor-pointer"
+          className="hover:shadow-md transition-all cursor-pointer hover:border-primary/50"
           onClick={() => handleOptionClick("quizzes")}
         >
           <CardContent className="p-4 text-center">
             <div className="w-12 h-12 bg-achievement rounded-lg flex items-center justify-center mx-auto mb-3">
               <HelpCircle className="w-6 h-6 text-white" />
             </div>
-            <h3 className="font-semibold mb-2">Quizzes</h3>
+            <h3 className="font-semibold mb-1 text-sm">Quizzes</h3>
             <p className="text-xs text-muted-foreground">Test your knowledge</p>
           </CardContent>
         </Card>
 
         <Card
-          className="hover:shadow-md transition-all cursor-pointer"
+          className="hover:shadow-md transition-all cursor-pointer hover:border-primary/50"
           onClick={() => handleOptionClick("modules")}
         >
           <CardContent className="p-4 text-center">
             <div className="w-12 h-12 bg-alert-info rounded-lg flex items-center justify-center mx-auto mb-3">
               <FileText className="w-6 h-6 text-white" />
             </div>
-            <h3 className="font-semibold mb-2">Modules</h3>
-            <p className="text-xs text-muted-foreground">Text and video lessons</p>
+            <h3 className="font-semibold mb-1 text-sm">Modules</h3>
+            <p className="text-xs text-muted-foreground">Disaster action guides</p>
           </CardContent>
         </Card>
 
         <Card
-          className="hover:shadow-md transition-all cursor-pointer"
+          className="hover:shadow-md transition-all cursor-pointer hover:border-primary/50"
           onClick={() => handleOptionClick("maps")}
         >
           <CardContent className="p-4 text-center">
             <div className="w-12 h-12 bg-alert-warning rounded-lg flex items-center justify-center mx-auto mb-3">
               <Map className="w-6 h-6 text-white" />
             </div>
-            <h3 className="font-semibold mb-2">Maps</h3>
-            <p className="text-xs text-muted-foreground">Disaster risk zones</p>
+            <h3 className="font-semibold mb-1 text-sm">Risk Maps</h3>
+            <p className="text-xs text-muted-foreground">State hazard zones</p>
           </CardContent>
         </Card>
       </div>
@@ -137,20 +113,23 @@ const LearningModules = ({ userType, userState }: LearningModulesProps) => {
       {/* Learning Progress Overview */}
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-base">Your Learning Progress</CardTitle>
+          <CardTitle className="text-base">Safety Readiness Progress</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
-            
-            <div className="flex justify-between text-sm">
-              <span>Modules Finished</span>
-              <span className="font-medium">2</span>
+            <div className="flex justify-between text-xs">
+              <span className="text-muted-foreground">Active State Hazard Focus:</span>
+              <span className="font-bold text-primary">{userState || "Uttar Pradesh"}</span>
             </div>
-            <div className="w-full bg-muted rounded-full h-2 mt-3">
-              <div className="bg-primary h-2 rounded-full" style={{ width: '65%' }}></div>
+            <div className="flex justify-between text-xs">
+              <span className="text-muted-foreground">Curriculum Coverage:</span>
+              <span className="font-semibold">6 Disasters (Earthquake, Flood, Cyclone, Fire, Heatwave, Tsunami)</span>
+            </div>
+            <div className="w-full bg-muted rounded-full h-2 mt-2">
+              <div className="bg-primary h-2 rounded-full" style={{ width: '85%' }}></div>
             </div>
             <p className="text-xs text-muted-foreground text-center">
-              Overall Learning Progress: 65%
+              Complete quizzes and module guides to reach 100% preparedness
             </p>
           </div>
         </CardContent>

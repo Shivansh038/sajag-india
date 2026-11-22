@@ -1,142 +1,67 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { 
-  Phone, Search, MapPin, Clock, 
+  Phone, Search, MapPin, 
   Hospital, Shield, Flame, Car, 
-  Navigation, Star
+  Star, PhoneCall
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { getContactsForState, EmergencyContact } from "@/lib/emergencyContacts";
 
-const EmergencyDirectory = () => {
+interface EmergencyDirectoryProps {
+  userState?: string;
+  userCity?: string;
+}
+
+const EmergencyDirectory = ({ userState = "Uttar Pradesh", userCity }: EmergencyDirectoryProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const { toast } = useToast();
 
   const categories = [
     { id: "all", label: "All", icon: Search },
+    { id: "emergency", label: "Helpline", icon: Shield },
     { id: "hospital", label: "Medical", icon: Hospital },
     { id: "police", label: "Police", icon: Shield },
     { id: "fire", label: "Fire", icon: Flame },
     { id: "rescue", label: "Rescue", icon: Car }
   ];
 
-  const emergencyContacts = [
-    {
-      id: 1,
-      name: "National Emergency Helpline",
-      category: "emergency",
-      phone: "112",
-      description: "Single emergency number for all services",
-      address: "Nationwide Service",
-      distance: "Available 24/7",
-      rating: 5,
-      isNational: true
-    },
-    {
-      id: 2,
-      name: "AIIMS Emergency",
-      category: "hospital", 
-      phone: "+91-11-2658-8500",
-      description: "Trauma center and emergency medical services",
-      address: "Ansari Nagar, New Delhi",
-      distance: "2.3 km away",
-      rating: 4.5,
-      isNational: false
-    },
-    {
-      id: 3,
-      name: "Delhi Police Control Room",
-      category: "police",
-      phone: "100",
-      description: "Police emergency response and crime reporting",
-      address: "Delhi Police Headquarters",
-      distance: "City-wide coverage",
-      rating: 4,
-      isNational: false
-    },
-    {
-      id: 4,
-      name: "Fire Service Station",
-      category: "fire",
-      phone: "101", 
-      description: "Fire emergency response and rescue operations",
-      address: "Connaught Place Fire Station",
-      distance: "1.8 km away",
-      rating: 4.2,
-      isNational: false
-    },
-    {
-      id: 5,
-      name: "Disaster Management Helpline",
-      category: "rescue",
-      phone: "108",
-      description: "NDMA disaster response coordination",
-      address: "NDMA Headquarters",
-      distance: "3.5 km away", 
-      rating: 4.3,
-      isNational: true
-    },
-    {
-      id: 6,
-      name: "Safdarjung Hospital",
-      category: "hospital",
-      phone: "+91-11-2673-0000",
-      description: "Multi-specialty hospital with emergency care",
-      address: "Ring Road, Safdarjung Enclave",
-      distance: "4.1 km away",
-      rating: 4.1,
-      isNational: false
-    }
-  ];
+  const allContacts = useMemo(() => {
+    return getContactsForState(userState, userCity);
+  }, [userState, userCity]);
+
+  const filteredContacts = useMemo(() => {
+    return allContacts.filter(contact => {
+      const matchesCategory = selectedCategory === "all" || contact.category === selectedCategory;
+      const matchesSearch = 
+        contact.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        contact.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        contact.address.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        contact.phone.includes(searchQuery);
+      return matchesCategory && matchesSearch;
+    });
+  }, [allContacts, selectedCategory, searchQuery]);
 
   const handleCall = (phone: string, name: string) => {
-    // In a real app, this would initiate a call
     window.location.href = `tel:${phone}`;
     toast({
-      title: "Calling " + name,
-      description: "Initiating emergency call..."
+      title: "Initiating Call: " + name,
+      description: `Dialing ${phone}... Stay calm and state your location clearly.`
     });
   };
 
-  const handleGetDirections = (name: string) => {
-    // In a real app, this would open maps
-    toast({
-      title: "Opening directions",
-      description: `Getting directions to ${name}`
-    });
-  };
-
-  const filteredContacts = emergencyContacts.filter(contact => {
-    const matchesSearch = contact.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         contact.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = selectedCategory === "all" || contact.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
-
-  const getCategoryColor = (category: string) => {
+  const getCategoryBadgeColor = (category: string) => {
     switch (category) {
-      case "hospital": return "bg-alert-safe";
-      case "police": return "bg-primary";
-      case "fire": return "bg-alert-critical";
-      case "rescue": return "bg-alert-warning";
-      default: return "bg-muted";
+      case "hospital": return "bg-alert-info text-white";
+      case "police": return "bg-primary text-white";
+      case "fire": return "bg-alert-warning text-white";
+      case "rescue": return "bg-alert-critical text-white";
+      default: return "bg-secondary text-secondary-foreground";
     }
-  };
-
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, i) => (
-      <Star
-        key={i}
-        className={`w-3 h-3 ${
-          i < Math.floor(rating) 
-            ? "text-yellow-500 fill-current" 
-            : "text-gray-300"
-        }`}
-      />
-    ));
   };
 
   return (
@@ -147,24 +72,52 @@ const EmergencyDirectory = () => {
           <Phone className="w-5 h-5 mr-2 text-primary" />
           Emergency Directory
         </h2>
-        <p className="text-sm text-muted-foreground">
-          Quick access to emergency services near you
+        <p className="text-xs text-muted-foreground mt-0.5">
+          24/7 Verified emergency helplines for {userState}
         </p>
       </div>
 
-      {/* Search */}
+      {/* Priority 112 Banner */}
+      <Card className="border-alert-critical bg-alert-critical/10 shadow-sm">
+        <CardContent className="p-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2.5">
+              <div className="w-10 h-10 rounded-full bg-alert-critical flex items-center justify-center text-white shrink-0">
+                <PhoneCall className="w-5 h-5 animate-pulse" />
+              </div>
+              <div>
+                <p className="text-sm font-bold text-alert-critical">
+                  National Emergency: 112
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Immediate all-in-one Police, Fire & Medical dispatch
+                </p>
+              </div>
+            </div>
+            <Button 
+              size="sm" 
+              className="bg-alert-critical hover:bg-alert-critical/90 text-white font-bold text-xs h-8"
+              onClick={() => handleCall("112", "National Emergency 112")}
+            >
+              Call 112
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Search Input */}
       <div className="relative">
-        <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
+        <Search className="w-4 h-4 absolute left-3 top-3 text-muted-foreground" />
         <Input
-          placeholder="Search hospitals, police stations..."
+          placeholder="Search by hospital, police, helpline, or phone..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="pl-10"
+          className="pl-9 text-xs h-10"
         />
       </div>
 
-      {/* Category Filter */}
-      <div className="flex space-x-2 overflow-x-auto pb-2">
+      {/* Category Pills */}
+      <div className="flex space-x-1.5 overflow-x-auto pb-1 scrollbar-none">
         {categories.map((category) => {
           const Icon = category.icon;
           return (
@@ -173,130 +126,85 @@ const EmergencyDirectory = () => {
               variant={selectedCategory === category.id ? "default" : "outline"}
               size="sm"
               onClick={() => setSelectedCategory(category.id)}
-              className="flex-shrink-0"
+              className="text-xs h-7 shrink-0 px-2.5"
             >
-              <Icon className="w-4 h-4 mr-1" />
+              <Icon className="w-3 h-3 mr-1" />
               {category.label}
             </Button>
           );
         })}
       </div>
 
-      {/* National Emergency Banner */}
-      <Card className="bg-gradient-to-r from-alert-critical to-alert-critical/80 text-white">
-        <CardContent className="p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="font-semibold mb-1">Emergency? Call 112</h3>
-              <p className="text-sm opacity-90">
-                Single number for Police, Fire, Medical emergencies
-              </p>
-            </div>
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={() => handleCall("112", "National Emergency")}
-              className="bg-white text-alert-critical hover:bg-white/90"
-            >
-              <Phone className="w-4 h-4 mr-1" />
-              Call Now
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Emergency Contacts List */}
+      {/* Contacts List */}
       <div className="space-y-3">
-        {filteredContacts.map((contact) => (
-          <Card key={contact.id} className="hover:shadow-md transition-all">
-            <CardContent className="p-4">
-              <div className="flex items-start justify-between mb-3">
-                <div className="flex-1">
-                  <div className="flex items-center space-x-2 mb-1">
-                    <h3 className="font-semibold text-sm">{contact.name}</h3>
-                    {contact.isNational && (
-                      <Badge variant="secondary" className="text-xs">
-                        National
+        {filteredContacts.length > 0 ? (
+          filteredContacts.map((contact) => (
+            <Card key={contact.id} className="hover:shadow-md transition-all border-border/80">
+              <CardContent className="p-3.5">
+                <div className="flex items-start justify-between">
+                  <div className="flex-1 min-w-0 pr-2">
+                    <div className="flex items-center space-x-1.5 mb-1 flex-wrap gap-1">
+                      <h3 className="font-bold text-sm leading-tight">{contact.name}</h3>
+                      {contact.isNational && (
+                        <Badge variant="outline" className="text-[10px] px-1 py-0 h-4 border-primary text-primary">
+                          National
+                        </Badge>
+                      )}
+                      <Badge className={`text-[10px] px-1.5 py-0 h-4 ${getCategoryBadgeColor(contact.category)}`}>
+                        {contact.category.toUpperCase()}
                       </Badge>
-                    )}
-                  </div>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    {contact.description}
-                  </p>
-                  <div className="space-y-1">
-                    <div className="flex items-center text-xs text-muted-foreground">
-                      <MapPin className="w-3 h-3 mr-1" />
-                      {contact.address}
                     </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center text-xs text-muted-foreground">
-                        <Navigation className="w-3 h-3 mr-1" />
-                        {contact.distance}
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        {renderStars(contact.rating)}
-                        <span className="text-xs text-muted-foreground ml-1">
-                          {contact.rating}
-                        </span>
-                      </div>
+
+                    <p className="text-xs text-muted-foreground mb-1.5">
+                      {contact.description}
+                    </p>
+
+                    <div className="flex items-center text-xs text-muted-foreground space-x-2">
+                      <MapPin className="w-3 h-3 text-primary shrink-0" />
+                      <span className="truncate">{contact.address}</span>
+                    </div>
+
+                    <div className="flex items-center text-[11px] text-muted-foreground mt-1 space-x-3">
+                      <span className="font-medium text-foreground/80">{contact.distance}</span>
+                      <span className="flex items-center text-amber-500 font-semibold">
+                        <Star className="w-3 h-3 fill-amber-500 mr-0.5" />
+                        {contact.rating}
+                      </span>
                     </div>
                   </div>
+
+                  <Button
+                    size="sm"
+                    className="bg-primary hover:bg-primary-hover text-white text-xs px-3 h-8 shrink-0 flex items-center space-x-1"
+                    onClick={() => handleCall(contact.phone, contact.name)}
+                  >
+                    <Phone className="w-3.5 h-3.5" />
+                    <span>Call</span>
+                  </Button>
                 </div>
-                <div className={`w-2 h-16 rounded-full ${getCategoryColor(contact.category)} ml-3`} />
-              </div>
-
-              <div className="flex space-x-2">
-                <Button
-                  size="sm"
-                  onClick={() => handleCall(contact.phone, contact.name)}
-                  className="flex-1 bg-alert-safe hover:bg-alert-safe/90"
-                >
-                  <Phone className="w-4 h-4 mr-1" />
-                  Call
-                </Button>
-                <Button
-                  size="sm" 
-                  variant="outline"
-                  onClick={() => handleGetDirections(contact.name)}
-                  className="flex-1"
-                >
-                  <MapPin className="w-4 h-4 mr-1" />
-                  Directions
-                </Button>
-              </div>
-
-              {/* Phone number display */}
-              <div className="mt-2 p-2 bg-muted/50 rounded text-center">
-                <span className="text-sm font-mono font-medium">
-                  {contact.phone}
-                </span>
-              </div>
+              </CardContent>
+            </Card>
+          ))
+        ) : (
+          <Card>
+            <CardContent className="p-8 text-center space-y-2">
+              <Phone className="w-8 h-8 text-muted-foreground mx-auto" />
+              <h3 className="font-medium">No contacts match your query</h3>
+              <p className="text-xs text-muted-foreground">
+                Try searching for "Police", "Ambulance", "112", or clear the filter.
+              </p>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={() => { setSelectedCategory("all"); setSearchQuery(""); }}
+                className="mt-2 text-xs"
+              >
+                Reset Search
+              </Button>
             </CardContent>
           </Card>
-        ))}
+        )}
       </div>
-
-      {/* Empty State */}
-      {filteredContacts.length === 0 && (
-        <Card>
-          <CardContent className="p-8 text-center">
-            <Search className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
-            <h3 className="font-medium mb-1">No contacts found</h3>
-            <p className="text-sm text-muted-foreground">
-              Try adjusting your search or category filter
-            </p>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Offline Notice */}
-      <Card className="bg-alert-info/10 border-alert-info">
-        <CardContent className="p-3">
-          <p className="text-xs text-muted-foreground text-center">
-            💡 Critical contacts are available offline for emergency access
-          </p>
-        </CardContent>
-      </Card>
     </div>
   );
 };

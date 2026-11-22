@@ -1,73 +1,123 @@
-# Welcome to your Lovable project
+# Sajag - Disaster Preparedness and Education Platform
 
-## Project info
+**Sajag** ("Stay Safe. Stay Prepared.") is an interactive mobile-first disaster preparedness and education application designed for students, teachers, and school administrators.
 
-**URL**: https://lovable.dev/projects/1e0698eb-f29e-421a-8768-3d39e1e6cc0a
+---
 
-## How can I edit this code?
+## 🌟 Key Features
 
-There are several ways of editing your application.
+- **Personalized Role-Based Experience**:
+  - **Students**: Access disaster awareness modules, interactive games, educational safety reels, and preparedness quizzes.
+  - **Teachers**: Review classroom preparedness, manage safety drills, and track student training completion.
+  - **Administrators**: Comprehensive district and institutional preparedness analytics, active drill oversight, and risk level monitoring.
+- **Interactive Learning & Safety Modules**:
+  - Detailed guides and Do's & Don'ts for Floods, Earthquakes, Cyclones, Fire Emergencies, Tsunamis, and Heat Waves.
+  - Categorized into *Science*, *Emergency Measures* (Indoors, Outdoors, Before, After, Debris rescue), and *Emergency Kits*.
+- **Live Localized Alerts & NDMA Warnings**:
+  - Real-time safety bulletins, weather advisories, and disaster notifications filtered by severity (Critical, Warning, Info).
+- **24/7 Emergency Directory**:
+  - Instant access to National Emergency Helplines (112), Medical/Hospitals, Police, Fire, and Rescue services with quick-dial support.
+- **Geographic Risk Mapping**:
+  - Embedded interactive disaster risk maps (e.g., Punjab flood and hazard zones).
+- **Educational Safety Reels & Mini-Games**:
+  - Short-form video drills ("Drop, Cover, and Hold", Flood response) and gamified emergency kit building exercises.
+- **100% Free & Local Execution**:
+  - Runs completely on your PC with zero paid API dependencies and seamless local offline storage support.
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/1e0698eb-f29e-421a-8768-3d39e1e6cc0a) and start prompting.
+## 🛠️ Tech Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Framework**: [React 18](https://react.dev/) + [Vite](https://vitejs.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **UI Components & Styling**: [Tailwind CSS](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/) + [Radix UI](https://www.radix-ui.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **State & Data**: React Hooks + LocalStorage + React Query
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🚀 Getting Started
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Prerequisites
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+Make sure you have Node.js (v18 or higher) and npm installed on your machine:
+```bash
+node -v
+npm -v
 ```
 
-**Edit a file directly in GitHub**
+### Installation
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. Navigate to the project directory:
+   ```bash
+   cd sajag-app
+   ```
 
-**Use GitHub Codespaces**
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+3. Start the local development server:
+   ```bash
+   npm run dev
+   ```
 
-## What technologies are used for this project?
+4. Open your browser and navigate to:
+   ```
+   http://localhost:8080
+   ```
 
-This project is built with:
+### Building for Production
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+To create an optimized production build:
+```bash
+npm run build
+```
 
-## How can I deploy this project?
+To preview the production build locally:
+```bash
+npm run preview
+```
 
-Simply open [Lovable](https://lovable.dev/projects/1e0698eb-f29e-421a-8768-3d39e1e6cc0a) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
+## 📁 Project Structure
 
-Yes, you can!
+```
+├── public/                 # Static assets, HTML hazard guides, interactive maps, and icons
+│   ├── punjab_map.html     # Interactive disaster risk map
+│   ├── *_dos.html          # Disaster Do's & Don'ts guides
+│   ├── *_science.html      # Scientific background articles
+│   └── emergency_kit.html  # Emergency checklist guide
+├── src/
+│   ├── assets/             # Images and media assets
+│   ├── components/         # React UI Components
+│   │   ├── ui/             # Reusable shadcn/ui primitives
+│   │   ├── OnboardingScreen.tsx  # Role and location onboarding
+│   │   ├── HomeScreen.tsx        # Central dashboard tailored to user role
+│   │   ├── AlertsScreen.tsx      # Emergency advisories and weather alerts
+│   │   ├── EmergencyDirectory.tsx# Quick-dial emergency contact directory
+│   │   ├── LearningModules.tsx   # Hub for modules, maps, games & quizzes
+│   │   ├── Modules.tsx           # Multi-hazard guides and step-by-step measures
+│   │   ├── Quizzes.tsx           # Interactive disaster response quiz
+│   │   ├── Games.tsx             # Educational disaster escape & kit games
+│   │   ├── Reels.tsx             # Short video safety tips
+│   │   ├── Maps.tsx              # Disaster risk mapping
+│   │   ├── PreparednessLevels.tsx# School safety scorecards
+│   │   └── AdminDashboard.tsx    # Administrator and teacher metrics
+│   ├── hooks/              # Custom React hooks (toast, mobile detection)
+│   ├── lib/                # Utility functions and helpers
+│   ├── pages/              # Primary route pages (Index, NotFound)
+│   ├── App.tsx             # Main routing setup and query client
+│   └── main.tsx            # React application entry point
+├── package.json            # Project dependencies and npm scripts
+├── tailwind.config.ts      # Tailwind CSS configuration
+└── vite.config.ts          # Vite build configuration
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+---
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## 📜 License
+
+MIT License. Free to use, adapt, and run locally.
