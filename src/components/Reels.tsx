@@ -464,6 +464,118 @@ const REELS_DATA: Reel[] = [
     ],
     initialLikes: 1910,
     initialShares: 320
+  },
+  {
+    id: 8,
+    title: "How to Survive the Flood?? EP001",
+    subtitle: "Rapid Water Surge Survival & Urban Flood Escapes",
+    disaster: "Flood",
+    videoUrl: "https://www.youtube.com/shorts/85MlCwLx9Ms",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/85MlCwLx9Ms?autoplay=1&mute=1&loop=1&playlist=85MlCwLx9Ms&controls=1&modestbranding=1&rel=0",
+    source: "Whatif Survival Series",
+    durationSeconds: 35,
+    themeGradient: "from-blue-950 via-cyan-950 to-black",
+    accentColor: "#0ea5e9",
+    emoji: "🌊",
+    steps: [
+      {
+        stepNumber: 1,
+        headline: "Recognize Flash Flood Velocity",
+        instruction: "Moving floodwaters accelerate rapidly. Never underestimate shallow water—just 6 inches of swift flow can sweep adults off their feet.",
+        tipType: "warning"
+      },
+      {
+        stepNumber: 2,
+        headline: "Turn Around, Don't Drown",
+        instruction: "Never drive or walk across flooded roadways or underpasses. Water conceals washed-out bridges, sinkholes, and open manholes.",
+        tipType: "action"
+      },
+      {
+        stepNumber: 3,
+        headline: "Evacuate Basements Early",
+        instruction: "Do NOT linger in basement apartments or underground garages during cloudbursts; they can flood to ceiling height in under 3 minutes.",
+        tipType: "action"
+      },
+      {
+        stepNumber: 4,
+        headline: "Climb & Signal Rescuers",
+        instruction: "If trapped indoors, climb to the roof or upper floor with a flashlight or bright cloth to signal SDRF / NDRF evacuation teams.",
+        tipType: "protip"
+      }
+    ],
+    dos: [
+      "Move to higher ground immediately when heavy rainfall or flash flood alerts sound",
+      "Keep an emergency waterproof go-bag with medication, torch, and power bank ready",
+      "Follow designated flood evacuation routes mapped by local municipal authorities"
+    ],
+    donts: [
+      "Do NOT attempt to drive vehicles through flooded roads or underpasses",
+      "Do NOT touch downed electric wires or walk near submerged transformer boxes",
+      "Do NOT swim in swift-flowing muddy floodwaters"
+    ],
+    emergencyContact: "1070 (State Relief) / 112",
+    defaultComments: [
+      { id: "c13", author: "Rohan Verma", text: "Turn Around Don't Drown is the most vital rule in city flash floods!", timeAgo: "1 hour ago" },
+      { id: "c14", author: "Priya Nair", text: "Underground parking fills up shockingly fast. Great practical advice.", timeAgo: "2 hours ago" }
+    ],
+    initialLikes: 3890,
+    initialShares: 740
+  },
+  {
+    id: 9,
+    title: "The One Room That Could Save Your Life in a Cyclone",
+    subtitle: "Safest Interior Shelter Zone & Flying Debris Defense",
+    disaster: "Cyclone",
+    videoUrl: "https://www.youtube.com/shorts/9mPBfK1w68I",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/9mPBfK1w68I?autoplay=1&mute=1&loop=1&playlist=9mPBfK1w68I&controls=1&modestbranding=1&rel=0",
+    source: "Quark to Coast Survival Series",
+    durationSeconds: 40,
+    themeGradient: "from-indigo-950 via-slate-900 to-black",
+    accentColor: "#818cf8",
+    emoji: "🌀",
+    steps: [
+      {
+        stepNumber: 1,
+        headline: "Locate the Central Windowless Room",
+        instruction: "Choose an interior room on the lowest floor with no exterior glass (such as a central bathroom, hallway, or fortified pantry).",
+        tipType: "action"
+      },
+      {
+        stepNumber: 2,
+        headline: "Shield Against Flying Projectiles",
+        instruction: "Gale-force winds turn roof tiles and debris into deadly missiles. An interior bathroom provides multiple reinforced wall barriers.",
+        tipType: "warning"
+      },
+      {
+        stepNumber: 3,
+        headline: "Fortify with Heavy Mattresses",
+        instruction: "Take sturdy mattresses, thick quilts, or pillows into the room and pull them over your body to protect from falling ceiling debris.",
+        tipType: "action"
+      },
+      {
+        stepNumber: 4,
+        headline: "Stay Put Through the Eye",
+        instruction: "Do NOT leave when winds abruptly stop—the eye is calm, but the opposite eyewall will strike suddenly with fierce intensity.",
+        tipType: "protip"
+      }
+    ],
+    dos: [
+      "Shelter in a small, central, windowless ground-floor room before landfall",
+      "Cover yourself and family members with heavy mattresses or helmets for impact defense",
+      "Keep an emergency radio, drinking water, and first aid kit inside your safe room"
+    ],
+    donts: [
+      "Do NOT remain near large glass windows, balconies, or French doors",
+      "Do NOT step outside during the deceptively calm eye of the storm",
+      "Do NOT shelter in tin-roofed or temporary sheds"
+    ],
+    emergencyContact: "1077 (District Relief) / 112",
+    defaultComments: [
+      { id: "c15", author: "Ananya Deshmukh", text: "An interior bathroom with no windows saved our family during Cyclone Biparjoy!", timeAgo: "2 hours ago" },
+      { id: "c16", author: "Rajesh K.", text: "Plumbing pipes and compact walls make interior bathrooms structurally the safest zone.", timeAgo: "3 hours ago" }
+    ],
+    initialLikes: 4520,
+    initialShares: 910
   }
 ];
 

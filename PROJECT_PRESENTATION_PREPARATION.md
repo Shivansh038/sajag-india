@@ -58,7 +58,7 @@
 ### 2. Mobile-First Vertical Video Reels (Micro-Learning)
 * **The Decision:** Generation Z and school students consume knowledge through short-form video (Reels / Shorts). Static PDFs are rarely read before an emergency.
 * **The Implementation:** Built an interactive Reels engine with:
-  * Official YouTube Shorts on Earthquake (*Wd1sW6_VCU0*), Landslide (*6Ys0Qes7_M8*), Tsunami (*x6AZOMVGHps*), Flood (*dromoa7VDqI*), and Flood Kits (*5SFJk64JAH4*).
+  * Official YouTube Shorts on Earthquake (*Wd1sW6_VCU0*), Landslide (*6Ys0Qes7_M8*), Tsunami (*x6AZOMVGHps*), Indoor Flood (*dromoa7VDqI*), Urban Flood Surge (*85MlCwLx9Ms*), Cyclone Safe Room (*9mPBfK1w68I*), plus Fire and Heatwave action guides.
   * 9:16 vertical video player with auto-looping, verified source badges, and instant Action Plan toggles.
   * Zero quizzes in the reel deck to keep the focus purely on actionable survival instincts.
 
