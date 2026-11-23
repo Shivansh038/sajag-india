@@ -29,17 +29,10 @@ const gameList: Game[] = [
   },
   {
     name: "Hero vs Flood",
-    description: "Fun quiz game",
-    url: "https://hero-vs-flood.vercel.app/", // Placeholder URL
+    description: "Fun disaster response quiz game",
+    url: "https://hero-vs-flood.vercel.app/",
     icon: Gamepad2,
     color: "bg-alert-warning",
-  },
-  {
-    name: "Cyclone Preparedness",
-    description: "Prepare for cyclone emergencies",
-    url: "https://another-game-link.com/cyclone", // Placeholder URL
-    icon: Gamepad2,
-    color: "bg-achievement",
   },
 ];
 

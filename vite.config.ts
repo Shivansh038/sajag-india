@@ -7,12 +7,12 @@ export default defineConfig({
   base: "./",
   server: {
     host: true,
-    port: 8080,
+    port: 5173,
     allowedHosts: true,
   },
   preview: {
     host: true,
-    port: 8080,
+    port: 5173,
     allowedHosts: true,
   },
   plugins: [react()],
